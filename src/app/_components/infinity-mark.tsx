@@ -128,8 +128,10 @@ function start(host: HTMLElement) {
       inn[i * 2 + 1] = OY + (ix * SR + iy * CR) * S;
     }
 
-    for (let m = 0; m < N - 1; m++) {
-      const j = m + 1;
+    // Wrap the last quad back onto sample 0 — stopping at N-1 leaves the ring
+    // open, and that missing sliver reads as a tear once the mark is scaled up.
+    for (let m = 0; m < N; m++) {
+      const j = (m + 1) % N;
       const b = (bri[m] + bri[j]) * 0.5;
       const hh = ((((phs[m] + phs[j]) * 0.5) % 360) + 360) % 360;
       const c = `hsl(${hh.toFixed(1)},${SATURATION}%,${(8 + 46 * b).toFixed(1)}%)`;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono, Lora } from "next/font/google";
 import Link from "next/link";
 import { CONTACT_EMAIL, navLinks } from "@/lib/content";
 import { Mark } from "./_components/mark";
@@ -9,6 +9,12 @@ const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
   weight: ["400", "500", "600", "800", "900"],
+});
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  weight: ["600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -27,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${archivo.variable} ${lora.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <body className="font-sans">
         <header className="sticky top-0 z-50 flex items-center justify-between gap-6 border-b border-chalk/10 bg-ink/80 px-5 py-3.5 backdrop-blur-md sm:px-10">
